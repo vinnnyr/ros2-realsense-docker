@@ -15,6 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag vinnnyr/ros2-realsense-docker:$(date +%s)
-    - name: Push Docker image
-      run: docker push vinnnyr/ros2-realsense-docker:$(date +%s)
+      run: docker buildx build . --platform linux/amd64,linux/arm64 --file Dockerfile --tag vinnnyr/ros2-realsense-docker:$(date +%s) --push
