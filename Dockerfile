@@ -15,6 +15,6 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
     && rosdep install -y --from-paths src --ignore-src --skip-keys=catkin \
     && rm -rf /var/lib/apt/lists/*
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
-    && colcon build --event-handlers console_direct+ --cmake-args " -DBUILD_EXAMPLES=false" " -DBUILD_GRAPHICAL_EXAMPLES=false"
+    && colcon build --event-handlers console_direct+ --cmake-args " -DFORCE_RSUSB_BACKEND=ON" " -DBUILD_NETWORK_DEVICE=ON" " -DBUILD_EXAMPLES=false" " -DBUILD_GRAPHICAL_EXAMPLES=false"
 COPY assets/ros_entrypoint.sh /ros_entrypoint.sh
 ENTRYPOINT ["/ros_entrypoint.sh"]
